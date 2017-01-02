@@ -8,8 +8,9 @@ import static lubenets.vladyslav.java.utils.SortUtils.less;
  * Java sort for objects
  *
  * In computer science, an in-place algorithm is an algorithm which transforms input using no auxiliary data structure.
+ * A sorting algorithm is in-place if it uses ≤ c log N extra memory.
  *
- * N log N
+ * at most N log N compares and 6N lg N array accesses to  sort arary of size N
  *
  */
 public class MergeSort {
