@@ -36,7 +36,7 @@ public class MergeSort {
         for (int k = lo; k <= hi; k++) {
             if (i > mid) objects[k] = aux[j++];
             else if (j > hi) objects[k] = aux[i++];
-            else if (less(objects[j], objects[i])) objects[k] = objects[j++];
+            else if (less(objects[j], objects[i])) objects[k] = aux[j++];
             else objects[k] = objects[i++];
         }
     }

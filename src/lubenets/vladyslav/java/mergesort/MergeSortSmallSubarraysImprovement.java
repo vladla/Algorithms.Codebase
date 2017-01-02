@@ -1,5 +1,7 @@
 package lubenets.vladyslav.java.mergesort;
 
+import edu.princeton.cs.algs4.Insertion;
+
 import static lubenets.vladyslav.java.utils.SortUtils.less;
 
 /**
@@ -13,7 +15,9 @@ import static lubenets.vladyslav.java.utils.SortUtils.less;
  * at most N log N compares and 6N lg N array accesses to  sort arary of size N
  *
  */
-public class MergeSort {
+public class MergeSortSmallSubarraysImprovement {
+
+    private static final int CUTOFF = 7;
 
     public static void sort(Comparable[] objects) {
         Comparable[] aux = new Comparable[objects.length];
@@ -21,7 +25,10 @@ public class MergeSort {
     }
 
     private static void sort(Comparable[] objects, Comparable[] aux, int lo, int hi) {
-        if (hi <= lo) return;
+        if (hi <= lo + CUTOFF - 1) {
+            Insertion.sort(objects, lo, hi);
+            return;
+        }
         int mid = lo + (hi - lo) / 2;
         sort(objects, aux, lo, mid);
         sort(objects, aux, mid + 1, hi);
@@ -36,7 +43,7 @@ public class MergeSort {
         for (int k = lo; k <= hi; k++) {
             if (i > mid) objects[k] = aux[j++];
             else if (j > hi) objects[k] = aux[i++];
-            else if (less(objects[j], objects[i])) objects[k] = objects[j++];
+            else if (less(objects[j], objects[i])) objects[k] = aux[j++];
             else objects[k] = objects[i++];
         }
     }

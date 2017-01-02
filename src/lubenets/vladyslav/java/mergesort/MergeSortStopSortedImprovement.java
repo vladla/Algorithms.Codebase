@@ -13,7 +13,7 @@ import static lubenets.vladyslav.java.utils.SortUtils.less;
  * at most N log N compares and 6N lg N array accesses to  sort arary of size N
  *
  */
-public class MergeSort {
+public class MergeSortStopSortedImprovement {
 
     public static void sort(Comparable[] objects) {
         Comparable[] aux = new Comparable[objects.length];
@@ -25,6 +25,7 @@ public class MergeSort {
         int mid = lo + (hi - lo) / 2;
         sort(objects, aux, lo, mid);
         sort(objects, aux, mid + 1, hi);
+        if (!(less(objects[mid+1], objects[mid]))) return;
         merge(objects, aux, lo, mid, hi);
     }
 
@@ -36,7 +37,7 @@ public class MergeSort {
         for (int k = lo; k <= hi; k++) {
             if (i > mid) objects[k] = aux[j++];
             else if (j > hi) objects[k] = aux[i++];
-            else if (less(objects[j], objects[i])) objects[k] = objects[j++];
+            else if (less(objects[j], objects[i])) objects[k] = aux[j++];
             else objects[k] = objects[i++];
         }
     }
