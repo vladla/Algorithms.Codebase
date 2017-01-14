@@ -12,6 +12,8 @@ import static lubenets.vladyslav.java.utils.SortUtils.less;
  *
  * at most N log N compares and 6N lg N array accesses to  sort array of size N
  *
+ * Mergesort with duplicate keys. Between 1⁄2 N lg N and N lg N compares.
+ *
  */
 public class MergeSort {
 

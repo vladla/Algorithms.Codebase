@@ -4,17 +4,11 @@ import edu.princeton.cs.algs4.StdRandom;
 import lubenets.vladyslav.java.utils.SortUtils;
 
 /**
- * Created by vladla on 12/14/16.
- *
- * Number of compares ~ N lg N(best case) and ~ 1/2N*N(worst-case) and ~2NlnN(average)
- * Number of exchanges ~ 1/3NlnN(average)
- * in-place
- * not-stable
- *
- * Quicksort with duplicate keys - Algorithm goes quadratic unless partitioning stops on equal keys!
- *
+ * Created by vladla on 1/8/17.
  */
-public class QuickSort {
+public class QuickSortMedianImprovement {
+
+    private static final int CUTOFF = 10;
 
     public static void sort(Comparable[] objects) {
         StdRandom.shuffle(objects);
@@ -23,6 +17,9 @@ public class QuickSort {
 
     private static void sort(Comparable[] a, int lo, int hi) {
         if (hi <= lo) return;
+        //todo: implement it
+//        int m = medianOf3(a, lo, lo + (hi - lo)/2, hi);
+//        swap(a, lo, m);
         int j = partition(a, lo, hi);
         sort(a, lo, j - 1);
         sort(a, j + 1, hi);
